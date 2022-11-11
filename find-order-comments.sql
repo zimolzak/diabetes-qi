@@ -28,24 +28,16 @@ Most promising is clearly OrderAction.
 */
 
 select top 14 
-      [CPRSOrderSID]
-      ,[Sta3n]
-      ,[PatientSID]
-      ,[OrderStartDateTime]
+      [CPRSOrderSID]      ,[Sta3n]      ,[PatientSID]      ,[OrderStartDateTime]
       ,[OrderActionDateTime]  -- seems boring
       ,[OrderAction]  -- seems boring
-      ,[ProviderSID]
-
-      ,[TextReference]
-
-      ,[OrderText]
-      ,[ExternalText]
-      ,[WardComments]
-
+      ,[ProviderSID]      ,[TextReference]      ,[OrderText]      ,[ExternalText]      ,[WardComments]
 from CDWWork.CPRSOrder.OrderAction
 where OrderStartDateTime > '2022-08-01'
   and sta3n = 580
-  --and OrderText is not null
+
+
+
 
 /* how do I get to orderableItem? */
 
@@ -62,6 +54,8 @@ where TABLE_NAME = 'cprsorder'
 -- orderedItem also links back to CPRSOrder.
 
 
+
+
 /**** trying multi join ********/
 
 select top 15 * 
@@ -70,25 +64,9 @@ from [CDWWork].[CPRSOrder].[CPRSOrder]
 where sta3n = 580 and PatientSID > 0 and orderstartDatetime > '2010-01-01'
 
 SELECT 
-c.[CPRSOrderSID],
-c.[Sta3n],
-c.[PatientSID],
-c.[EnteredDateTime],
-c.[OrderType],
-c.[InPatientFlag],
-c.[OrderStartDateTime],
-
-      a.[ProviderSID],
-
-      a.[TextReference],
-
-      a.[OrderText],
-      a.[ExternalText],
-      a.[WardComments]
-
-
-  FROM #az_top15ord as c
-  -- where sta3n = 580 and PatientSID > 0 and orderstartDatetime > '2010-01-01'
+	c.[CPRSOrderSID],c.[Sta3n],c.[PatientSID],c.[EnteredDateTime],c.[OrderType],c.[InPatientFlag],c.[OrderStartDateTime],
+	a.[ProviderSID],a.[TextReference],a.[OrderText],a.[ExternalText],a.[WardComments]
+FROM #az_top15ord as c
+-- where sta3n = 580 and PatientSID > 0 and orderstartDatetime > '2010-01-01'
 left join CDWWork.CPRSOrder.OrderAction as a
 on c.CPRSOrderSID = a.CPRSOrderSID
-
