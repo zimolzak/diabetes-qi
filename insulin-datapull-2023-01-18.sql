@@ -99,10 +99,10 @@ where
 		1000150132,
 		1000220886
 	)
-	and	EnteredDateTime > '2022-06-30'
-	and	EnteredDateTime < '2022-07-23'
+	and	EnteredDateTime > '2022-12-24'  --'2022-06-30'
+	and	EnteredDateTime < '2023-01-16'  --'2022-07-23'
 
--- got about 119 prelim hits at the 1 minute mark
+-- July dates: got about 119 prelim hits at the 1 minute mark
 -- final: 3,033 rows. Took 1 min 26 sec.
 
 /*
