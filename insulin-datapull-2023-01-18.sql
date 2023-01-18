@@ -101,3 +101,16 @@ where
 	)
 	and	EnteredDateTime > '2022-06-30'
 	and	EnteredDateTime < '2022-07-23'
+
+-- got about 119 prelim hits at the 1 minute mark
+-- final: 3,033 rows. Took 1 min 26 sec.
+
+/*
+Standard export procedure:
+
+select all
+copy with headers
+paste into Notepad
+save as txt
+import into Excel as TSV
+*/
