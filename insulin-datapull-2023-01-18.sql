@@ -57,4 +57,47 @@ INSULIN,ASPART,HUMAN 100 UNT/ML INJ  100UNIT/ML  13 UNITS SUB-Q QAM dose decreas
 INSULIN,ASPART,HUMAN 100 UNT/ML INJ  100UNIT/ML  SLIDING SCALE SUB-Q QAC QBEDTIME 150 - 199:      2 units 200 - 249:      3 units 250 - 299:      4 units 300 - 349:      5 units > 349:          6 units Notify MD for blood glucoses LESS than 70 mg/dL and GREATER than 350 mg/dL 
 INSULIN,GLARGINE,HUMAN 100 UNIT/ML INJ  100UNIT/ML  15UNITS SUB-Q QPM Please give around 1700 (5PM) **Decreased while on pureed diet starting on XXXX/22. 
 INSULIN,GLARGINE,HUMAN 100 UNIT/ML INJ  100UNIT/ML  INJECT 25 UNITS UNDER THE SKIN AT BEDTIME FOR DIABETES. DO NOT MIX WITH OTHER INSULIN.  Quantity: 3 Refills: 3 
+
+One more specification:
+
+"...just get a few weeks of data from prior to my intervention (around July- August) and currently...."
+
+My notes about dates:
+
+- June 24: the 3 mo point prior to intervention, shouldn't need any before that.
+- july: well prior to intervention, get maybe 3 wk data?
+- jul-aug, maybe get all 8 weeks if viable performance.
+- sept 25, intervention starts
+- oct 15, intervention ongoing
+- 2022-12-25: should be okay time to start the short 3 wk pull.
+- 2023-01-15: the 3 mo after intervention.
+
+CONCLUSION:
+DATES TO DO FIRST, IN BRIEF:
+
+July 1 ~ July 22
+Dec 25 ~ Jan 15
 */
+
+
+select
+	oi.CPRSOrderSID, oi.Sta3n, oi.PatientSID, oi.EnteredDateTime, oi.OrderableItemSID,
+	oa.OrderText
+from CPRSOrder.OrderedItem as oi
+left join CPRSOrder.OrderAction as oa
+on oi.CPRSOrderSID = oa.CPRSOrderSID
+where
+	OrderableItemSID in
+	(
+		1000237950,
+		1000309490,
+		1000317997,
+		1000348588,
+		1000446651,
+		1000149742,
+		1000128488,
+		1000150132,
+		1000220886
+	)
+	and	EnteredDateTime > '2022-06-30'
+	and	EnteredDateTime < '2022-07-23'
