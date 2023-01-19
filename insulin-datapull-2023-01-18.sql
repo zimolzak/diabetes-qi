@@ -35,15 +35,15 @@ on oi.CPRSOrderSID = oa.CPRSOrderSID
 where
 	OrderableItemSID in
 	(
-		1000237950,
-		1000309490,
-		1000317997,
-		1000348588,
-		1000446651,
-		1000149742,
-		1000128488,
-		1000150132,
-		1000220886
+		--1000237950,
+		1000309490,  -- det
+		1000317997  --glar
+		--1000348588,
+		--1000446651,
+		--1000149742,
+		--1000128488,
+		--1000150132,
+		--1000220886
 	) and
 	EnteredDateTime > '2022-06-24'
 -- this took about 1 minute
@@ -89,21 +89,23 @@ on oi.CPRSOrderSID = oa.CPRSOrderSID
 where
 	OrderableItemSID in
 	(
-		1000237950,
-		1000309490,
-		1000317997,
-		1000348588,
-		1000446651,
-		1000149742,
-		1000128488,
-		1000150132,
-		1000220886
+		--1000237950,
+		1000309490,  -- det
+		1000317997  --glar
+		--1000348588,
+		--1000446651,
+		--1000149742,
+		--1000128488,
+		--1000150132,
+		--1000220886
 	)
-	and	EnteredDateTime > '2022-12-24'  --'2022-06-30'
+	and	EnteredDateTime > '2022-06-30'
 	and	EnteredDateTime < '2023-01-16'  --'2022-07-23'
 
 -- July dates: got about 119 prelim hits at the 1 minute mark
 -- final: 3,033 rows. Took 1 min 26 sec.
+
+-- for glargine & detemir only, and 06-30 to 01-16: 02:49, 13,547 rows.
 
 /*
 Standard export procedure:
@@ -113,4 +115,21 @@ copy with headers
 paste into Notepad
 save as txt
 import into Excel as TSV
+*/
+
+
+/*
+2023-01-19 mtg--
+DECIDED:
+- only detemir & glargine, DONE.
+- exclude outpatient, DONE.
+- exclude those with a NULL in OrderText, DONE.
+- if 2 or more have exact same dateTime, only keep 1  **TODO/FIXME**
+- TRY to exclude transition to SQ (because that's one-time "now" order not continuing order) **TODO/FIXME**
+- and maybe exclude ALL "now" orders?
+
+FIND OUT:
+orders using / all orders ?
+patients using / all patients ?
+
 */
